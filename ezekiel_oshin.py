@@ -1,6 +1,10 @@
+import psycopg2
+
 """
 Author: ezekieloshin@gmail.com
 """
+
+# Define SQL statements for each question
 question_one = """
 -- SELECT
     txn_type,
@@ -28,9 +32,7 @@ ORDER BY
 
 question_three = """
 -- SELECT
-  --  DATE(CAST(txn_date AS DATE)) AS calendar_month,
-  --  EXTRACT(MONTH FROM CAST(txn_date AS DATE)) AS calendar_month,
-		TO_CHAR(CAST(txn_date AS DATE), 'Month') AS calendar_month,
+    TO_CHAR(CAST(txn_date AS DATE), 'Month') AS calendar_month,
     SUM(CASE WHEN txn_type = 'BUY' THEN quantity ELSE 0 END) AS buy_quantity,
     SUM(CASE WHEN txn_type = 'SELL' THEN quantity ELSE 0 END) AS sell_quantity
 FROM
@@ -41,7 +43,7 @@ WHERE
 GROUP BY
     calendar_month
 ORDER BY
- calendar_month;
+    calendar_month;
 """
 
 question_four = """
@@ -60,11 +62,11 @@ GROUP BY
     m.first_name
 ORDER BY
     total_quantity DESC
- LIMIT 3;
+LIMIT 3;
 """
 
 # Function to execute SQL queries
-def execute_query(query):
+def execute_query(query, cursor):
     cursor.execute(query)
     return cursor.fetchall()
 
@@ -83,10 +85,10 @@ def main():
         cursor = conn.cursor()
 
         # Execute SQL queries for each question
-        result_1 = execute_query(question_one)
-        result_2 = execute_query(question_two)
-        result_3 = execute_query(question_three)
-        result_4 = execute_query(question_four)
+        result_1 = execute_query(question_one, cursor)
+        result_2 = execute_query(question_two, cursor)
+        result_3 = execute_query(question_three, cursor)
+        result_4 = execute_query(question_four, cursor)
 
         # Process and display the results
         print("Results for Question one:")
@@ -114,5 +116,5 @@ def main():
         if conn:
             conn.close()
 
-if __name__ == "__main":
+if __name__ == "__main__":
     main()
