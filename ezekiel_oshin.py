@@ -6,7 +6,7 @@ Author: ezekieloshin@gmail.com
 
 # Define SQL statements for each question
 question_one = """
--- SELECT
+SELECT
     txn_type,
     COUNT(*) AS transaction_count
 FROM
@@ -16,7 +16,7 @@ GROUP BY
 """
 
 question_two = """
--- SELECT
+SELECT
     EXTRACT(YEAR FROM txn_date::date) AS txn_year,
     txn_type,
     COUNT(*) AS txn_count,
@@ -31,7 +31,7 @@ ORDER BY
 """
 
 question_three = """
--- SELECT
+SELECT
     TO_CHAR(CAST(txn_date AS DATE), 'Month') AS calendar_month,
     SUM(CASE WHEN txn_type = 'BUY' THEN quantity ELSE 0 END) AS buy_quantity,
     SUM(CASE WHEN txn_type = 'SELL' THEN quantity ELSE 0 END) AS sell_quantity
@@ -47,7 +47,7 @@ ORDER BY
 """
 
 question_four = """
--- SELECT
+SELECT
     m.first_name,
     SUM(t.quantity) AS total_quantity
 FROM
