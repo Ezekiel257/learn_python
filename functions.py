@@ -80,7 +80,28 @@ def calc_num(num1, **kwargs):
         final_num += v
     return final_num
 
-print(calc_num(1, num3=2, num2=7, num4=3, num5=6))
+#print(calc_num(1, num3=2, num2=7, num4=3, num5=6))
 
+def my_function(food):
+  for x in food:
+    print(x)
+
+fruits = ["apple", "banana", "cherry"]
+protein = ["chicken", "babe", "whey"]
+#my_function(fruits)
+my_function(protein)
+
+#recursion function
+#which means a defined function can call itself.
+def tri_recursion(k):
+  if(k > 0):
+    result = k + tri_recursion(k - 1)
+    print(result)
+  else:
+    result = 0
+  return result
+
+print("\n\nRecursion Example Results")
+tri_recursion(6)
 
 
