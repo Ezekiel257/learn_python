@@ -1,0 +1,30 @@
+### This README explains the core of the script used to convert csv to json
+load_json_data Function:
+
+This function is designed to load JSON data from files in a given folder and flatten it into a list of dictionaries.
+It iterates through each file in the folder, loads the JSON data, and extracts relevant information from the 'payload' and 'metadata' sections.
+The flattened data includes fields from both 'payload' and 'metadata', as well as additional fields like 'type', 'event_id', and 'event_at' for better clarity.
+The function returns a list of dictionaries representing the flattened data.
+store_data_as_json Function:
+
+This function takes a list of dictionaries and stores it as a JSON file.
+It opens a file in write mode and uses the json.dump function to serialize the data into JSON format.
+process_data_to_csv Function:
+
+This function takes a list of dictionaries and writes it to a CSV file.
+#It opens a CSV file in write mode, creates a CSV writer object, writes the header row using keys from the first dictionary in the list, and then writes the data rows.
+main Function:
+
+The main function serves as the entry point for the script.
+It calls the load_json_data, store_data_as_json, and process_data_to_csv functions for both 'users' and 'cards' data.
+The paths to the 'users' and 'cards' folders are constructed using os.path.join with the absolute path.
+Execution:
+
+The script executes the main function when run, loading, flattening, and storing both 'users' and 'cards' data in JSON files ('users_data.json' and 'cards_data.json') and CSV files ('users_data.csv' and 'cards_data.csv').
+Modularity:
+
+The code is modular, making it easy to reuse functions for different data sources or adapt them for future changes in JSON structure.
+Error Handling:
+
+While error handling is not explicitly implemented in this code, incorporating try-except blocks can help handle potential issues such as missing files or incorrect file formats.
+By making these changes, the code becomes more organized, modular, and readable, facilitating easier maintenance and extension in the future.
