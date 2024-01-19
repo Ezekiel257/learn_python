@@ -10,7 +10,7 @@ xpoints = np.array([12, 6, 5, 9])
 ypoints = np.array([5, 45, 12, 6])
 
 plt.plot(xpoints, ypoints)
-#plt.show()
+plt.show()
 
 #using histograms
 import numpy as np
